@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Coin Probability Experiment</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+        <div class="coin">🪙</div>
+        <h1>Coin Probability Experiment</h1>
+        <p>
+            1000개의 동전을 던지고 조건을 만족한 경우<br>
+            선택 결과를 시뮬레이션합니다.
+        </p>
+    </div>
+
+
+    <div class="card">
+
+        <h2>실험 결과</h2>
+
+
+        <div class="result-item">
+
+            <div class="title">
+                총 실험 횟수
+            </div>
+
+            <div class="number"
+                 th:text="${result.totalTrials}">
+                100000회
+            </div>
+
+
+        </div>
+
+
+
+        <div class="result-item">
+
+            <div class="title">
+                뒷면 선택 횟수
+            </div>
+
+
+            <div class="number"
+                 th:text="${result.tailSelections}">
+                97500
+            </div>
+
+
+            <div class="bar">
+
+                <div class="bar-fill"
+                     th:style="'width:' + (${result.tailProbability} * 100) + '%'">
+
+                </div>
+
+            </div>
+
+
+
+        </div>
+
+
+
+
+        <div class="result-item">
+
+            <div class="title">
+                뒷면 확률
+            </div>
+
+
+            <div class="number"
+                 th:text="${result.tailProbability}">
+                0.975
+            </div>
+
+
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+</body>
+
+</html>
