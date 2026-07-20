@@ -142,7 +142,9 @@ body {
 
 }
 
-
+.bar-fill.switch {
+    background: #e2704a;
+}
 
 .percentage {
 
