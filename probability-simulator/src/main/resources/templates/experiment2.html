@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Coin Probability Experiment 2</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+        <div class="coin">🪙</div>
+        <h1>Monty Hall Coin Experiment</h1>
+        <p>
+            1000개의 동전 중 앞면 501개 이상인 경우를 채택하고,<br>
+            사회자가 내 선택을 알고 있는지 여부에 따라<br>
+            "유지"와 "바꿈" 전략의 결과를 비교합니다.
+        </p>
+    </div>
+
+
+    <div class="card">
+
+        <h2>
+            실험 조건
+            <span th:text="${result.hostAwareOfChoice}
+                    ? '(사회자가 내 선택을 앎)'
+                    : '(사회자가 내 선택을 모름)'">
+            </span>
+        </h2>
+
+
+        <div class="result-item">
+
+            <div class="title">
+                유지했을 때 — 뒷면 확률
+            </div>
+
+            <div class="number">
+                <span th:text="${result.stayResult.tailSelections}"></span>
+                <span class="unit">/</span>
+                <span th:text="${result.stayResult.acceptedTrials}"></span>
+            </div>
+
+            <div class="bar">
+                <div class="bar-fill switch"
+                     th:style="'width:' + (${result.stayResult.tailProbability} * 100) + '%'">
+                </div>
+            </div>
+
+            <div class="percentage"
+                 th:text="${#numbers.formatPercent(result.stayResult.tailProbability, 1, 2)}">
+            </div>
+
+        </div>
+
+
+        <div class="result-item">
+
+            <div class="title">
+                바꿨을 때 — 뒷면 확률
+            </div>
+
+            <div class="number">
+                <span th:text="${result.switchResult.tailSelections}"></span>
+                <span class="unit">/</span>
+                <span th:text="${result.switchResult.acceptedTrials}"></span>
+            </div>
+
+            <div class="bar">
+                <div class="bar-fill switch"
+                     th:style="'width:' + (${result.switchResult.tailProbability} * 100) + '%'">
+                </div>
+            </div>
+
+            <div class="percentage"
+                 th:text="${#numbers.formatPercent(result.switchResult.tailProbability, 1, 2)}">
+            </div>
+
+        </div>
+
+
+        <div class="result-item">
+
+            <div class="title">
+                확률 차이 (바꿈 - 유지)
+            </div>
+
+            <div class="number"
+                 th:text="${#numbers.formatPercent(result.probabilityDifference, 1, 2)}">
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+</body>
+
+</html>
